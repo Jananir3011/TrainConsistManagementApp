@@ -1,6 +1,7 @@
 package org.example;
 
 public class GoodsBogie {
+
     private String type;
     private String cargo;
 

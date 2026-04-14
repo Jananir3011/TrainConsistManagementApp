@@ -29,7 +29,7 @@
         </dependency>
     </dependencies>
 
-    <!-- 🔥 ADD THIS -->
+
     <build>
         <plugins>
             <plugin>
