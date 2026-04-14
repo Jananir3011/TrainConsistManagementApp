@@ -1,4 +1,5 @@
 public class Bogie {
+
     private String type;
     private int capacity;
 
@@ -7,11 +8,16 @@ public class Bogie {
         this.capacity = capacity;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public int getCapacity() {
         return capacity;
     }
 
-    public String getType() {
-        return type;
+    @Override
+    public String toString() {
+        return type + " - Capacity: " + capacity;
     }
 }
