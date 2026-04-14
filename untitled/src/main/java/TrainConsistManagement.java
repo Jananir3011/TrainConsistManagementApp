@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.regex.*;
 import java.util.stream.Collectors;
 
 public class TrainConsistManagement {
@@ -16,11 +17,27 @@ public class TrainConsistManagement {
                 .collect(Collectors.groupingBy(Bogie::getType));
     }
 
-    // UC10 - Total Seat Calculation
+    // UC10 - Total Seats
     public static int calculateTotalSeats(List<Bogie> bogies) {
         return bogies.stream()
                 .map(Bogie::getCapacity)
                 .reduce(0, Integer::sum);
+    }
+
+    // UC11 - Validate Train ID
+    public static boolean isValidTrainID(String trainId) {
+        String regex = "TRN-\\d{4}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(trainId);
+        return matcher.matches();
+    }
+
+    // UC11 - Validate Cargo Code
+    public static boolean isValidCargoCode(String cargoCode) {
+        String regex = "PET-[A-Z]{2}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cargoCode);
+        return matcher.matches();
     }
 
     // Display List
@@ -50,17 +67,22 @@ public class TrainConsistManagement {
 
         // UC8
         System.out.println("Filtered Bogies (Capacity > 60):");
-        List<Bogie> filtered = filterHighCapacityBogies(bogies);
-        displayBogies(filtered);
+        displayBogies(filterHighCapacityBogies(bogies));
 
         // UC9
         System.out.println("\nGrouped Bogies:");
-        Map<String, List<Bogie>> grouped = groupBogiesByType(bogies);
-        displayGroupedBogies(grouped);
+        displayGroupedBogies(groupBogiesByType(bogies));
 
         // UC10
-        System.out.println("Total Seating Capacity:");
-        int totalSeats = calculateTotalSeats(bogies);
-        System.out.println("Total Seats = " + totalSeats);
+        System.out.println("Total Seats = " + calculateTotalSeats(bogies));
+
+        // UC11
+        System.out.println("\nValidation:");
+
+        String trainId = "TRN-1234";
+        String cargoCode = "PET-AB";
+
+        System.out.println("Train ID " + trainId + " valid? " + isValidTrainID(trainId));
+        System.out.println("Cargo Code " + cargoCode + " valid? " + isValidCargoCode(cargoCode));
     }
 }
