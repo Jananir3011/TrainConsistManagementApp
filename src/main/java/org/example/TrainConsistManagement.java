@@ -88,7 +88,7 @@ public class TrainConsistManagement {
         System.out.println("\nValidation:");
         System.out.println(isValidTrainID("TRN-1234"));
         System.out.println(isValidCargoCode("PET-AB"));
-
+// UC12 implemented
         // UC12 - Goods Bogies
         List<GoodsBogie> goods = new ArrayList<>();
 
