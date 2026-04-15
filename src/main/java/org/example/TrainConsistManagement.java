@@ -44,7 +44,7 @@ public class TrainConsistManagement {
                 );
     }
 
-    // UC13 Loop
+    // UC13
     public static List<Bogie> filterUsingLoop(List<Bogie> bogies) {
         List<Bogie> result = new ArrayList<>();
         for (Bogie b : bogies) {
@@ -55,7 +55,6 @@ public class TrainConsistManagement {
         return result;
     }
 
-    // UC13 Stream
     public static List<Bogie> filterUsingStream(List<Bogie> bogies) {
         return bogies.stream()
                 .filter(b -> b.getCapacity() > 60)
