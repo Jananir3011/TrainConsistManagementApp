@@ -73,7 +73,7 @@ public class TrainConsistManagement {
         return System.nanoTime() - start;
     }
 
-    // UC16 (Bubble Sort)
+    // UC16
     public static int[] bubbleSortCapacities(int[] arr) {
         int n = arr.length;
 
@@ -88,5 +88,11 @@ public class TrainConsistManagement {
             }
         }
         return arr;
+    }
+
+    // UC17
+    public static String[] sortBogieNames(String[] names) {
+        Arrays.sort(names);
+        return names;
     }
 }

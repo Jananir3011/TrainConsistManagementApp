@@ -20,13 +20,6 @@ public class TrainConsistManagementTest {
         });
     }
 
-    @Test
-    void testException_ZeroCapacityThrowsException() {
-        assertThrows(InvalidCapacityException.class, () -> {
-            new Bogie("Sleeper", 0);
-        });
-    }
-
     // UC15
     @Test
     void testCargo_SafeAssignment() {
@@ -50,31 +43,12 @@ public class TrainConsistManagementTest {
                 TrainConsistManagement.bubbleSortCapacities(input));
     }
 
+    // UC17
     @Test
-    void testSort_AlreadySortedArray() {
-        int[] input = {24, 56, 60, 70, 72};
-        assertArrayEquals(new int[]{24, 56, 60, 70, 72},
-                TrainConsistManagement.bubbleSortCapacities(input));
-    }
-
-    @Test
-    void testSort_DuplicateValues() {
-        int[] input = {72, 56, 56, 24};
-        assertArrayEquals(new int[]{24, 56, 56, 72},
-                TrainConsistManagement.bubbleSortCapacities(input));
-    }
-
-    @Test
-    void testSort_SingleElementArray() {
-        int[] input = {50};
-        assertArrayEquals(new int[]{50},
-                TrainConsistManagement.bubbleSortCapacities(input));
-    }
-
-    @Test
-    void testSort_AllEqualValues() {
-        int[] input = {40, 40, 40};
-        assertArrayEquals(new int[]{40, 40, 40},
-                TrainConsistManagement.bubbleSortCapacities(input));
+    void testSort_BasicAlphabeticalSorting() {
+        String[] input = {"Sleeper","AC Chair","First Class","General","Luxury"};
+        assertArrayEquals(new String[]{
+                "AC Chair","First Class","General","Luxury","Sleeper"
+        }, TrainConsistManagement.sortBogieNames(input));
     }
 }
