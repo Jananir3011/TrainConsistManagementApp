@@ -51,4 +51,17 @@ public class TrainConsistManagementTest {
                 "AC Chair","First Class","General","Luxury","Sleeper"
         }, TrainConsistManagement.sortBogieNames(input));
     }
+
+    // UC18
+    @Test
+    void testSearch_BogieFound() {
+        String[] ids = {"BG101","BG205","BG309","BG412","BG550"};
+        assertTrue(TrainConsistManagement.linearSearchBogie(ids, "BG309"));
+    }
+
+    @Test
+    void testSearch_BogieNotFound() {
+        String[] ids = {"BG101","BG205","BG309","BG412","BG550"};
+        assertFalse(TrainConsistManagement.linearSearchBogie(ids, "BG999"));
+    }
 }

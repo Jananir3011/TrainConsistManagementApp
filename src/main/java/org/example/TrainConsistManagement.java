@@ -95,4 +95,14 @@ public class TrainConsistManagement {
         Arrays.sort(names);
         return names;
     }
+
+    // UC18
+    public static boolean linearSearchBogie(String[] bogieIds, String key) {
+        for (String id : bogieIds) {
+            if (id.equals(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
