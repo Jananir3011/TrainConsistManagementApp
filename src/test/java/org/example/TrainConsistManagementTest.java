@@ -2,7 +2,6 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.*;
 
 public class TrainConsistManagementTest {
 
@@ -59,9 +58,10 @@ public class TrainConsistManagementTest {
         assertTrue(TrainConsistManagement.linearSearchBogie(ids, "BG309"));
     }
 
+    // UC19
     @Test
-    void testSearch_BogieNotFound() {
+    void testBinarySearch_BogieFound() {
         String[] ids = {"BG101","BG205","BG309","BG412","BG550"};
-        assertFalse(TrainConsistManagement.linearSearchBogie(ids, "BG999"));
+        assertTrue(TrainConsistManagement.binarySearchBogie(ids, "BG309"));
     }
 }

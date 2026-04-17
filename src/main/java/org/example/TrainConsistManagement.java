@@ -105,4 +105,33 @@ public class TrainConsistManagement {
         }
         return false;
     }
+
+    // UC19
+    public static boolean binarySearchBogie(String[] bogieIds, String key) {
+
+        if (bogieIds == null || bogieIds.length == 0) {
+            return false;
+        }
+
+        Arrays.sort(bogieIds); // ensure sorted
+
+        int low = 0;
+        int high = bogieIds.length - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            int cmp = key.compareTo(bogieIds[mid]);
+
+            if (cmp == 0) {
+                return true;
+            } else if (cmp > 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return false;
+    }
 }
