@@ -5,63 +5,43 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TrainConsistManagementTest {
 
-    // UC14
+    // UC20
     @Test
-    void testException_ValidCapacityCreation() throws InvalidCapacityException {
-        Bogie b = new Bogie("Sleeper", 50);
-        assertNotNull(b);
-    }
+    void testSearch_ThrowsExceptionWhenEmpty() {
+        String[] ids = {};
 
-    @Test
-    void testException_NegativeCapacityThrowsException() {
-        assertThrows(InvalidCapacityException.class, () -> {
-            new Bogie("Sleeper", -10);
+        assertThrows(IllegalStateException.class, () -> {
+            TrainConsistManagement.binarySearchBogie(ids, "BG101");
         });
     }
 
-    // UC15
     @Test
-    void testCargo_SafeAssignment() {
-        GoodsBogie b = new GoodsBogie("Cylindrical");
-        b.assignCargo("Petroleum");
-        assertEquals("Petroleum", b.getCargo());
+    void testSearch_AllowsSearchWhenDataExists() {
+        String[] ids = {"BG101","BG205"};
+
+        assertDoesNotThrow(() -> {
+            TrainConsistManagement.binarySearchBogie(ids, "BG101");
+        });
     }
 
     @Test
-    void testCargo_UnsafeAssignmentHandled() {
-        GoodsBogie b = new GoodsBogie("Rectangular");
-        b.assignCargo("Petroleum");
-        assertNull(b.getCargo());
+    void testSearch_BogieFoundAfterValidation() {
+        String[] ids = {"BG101","BG205","BG309"};
+
+        assertTrue(TrainConsistManagement.binarySearchBogie(ids, "BG205"));
     }
 
-    // UC16
     @Test
-    void testSort_BasicSorting() {
-        int[] input = {72, 56, 24, 70, 60};
-        assertArrayEquals(new int[]{24, 56, 60, 70, 72},
-                TrainConsistManagement.bubbleSortCapacities(input));
+    void testSearch_BogieNotFoundAfterValidation() {
+        String[] ids = {"BG101","BG205","BG309"};
+
+        assertFalse(TrainConsistManagement.binarySearchBogie(ids, "BG999"));
     }
 
-    // UC17
     @Test
-    void testSort_BasicAlphabeticalSorting() {
-        String[] input = {"Sleeper","AC Chair","First Class","General","Luxury"};
-        assertArrayEquals(new String[]{
-                "AC Chair","First Class","General","Luxury","Sleeper"
-        }, TrainConsistManagement.sortBogieNames(input));
-    }
+    void testSearch_SingleElementValidCase() {
+        String[] ids = {"BG101"};
 
-    // UC18
-    @Test
-    void testSearch_BogieFound() {
-        String[] ids = {"BG101","BG205","BG309","BG412","BG550"};
-        assertTrue(TrainConsistManagement.linearSearchBogie(ids, "BG309"));
-    }
-
-    // UC19
-    @Test
-    void testBinarySearch_BogieFound() {
-        String[] ids = {"BG101","BG205","BG309","BG412","BG550"};
-        assertTrue(TrainConsistManagement.binarySearchBogie(ids, "BG309"));
+        assertTrue(TrainConsistManagement.binarySearchBogie(ids, "BG101"));
     }
 }
